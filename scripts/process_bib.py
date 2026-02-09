@@ -127,6 +127,7 @@ def generate_invited_presentations(entries):
     html = []
     
     if invited:
+        html.append('\t\t\t\t\t\t<h3>Invited Presentations</h3>')
         start_num = len(invited)
         html.append(f'\t\t\t\t\t\t<ol reversed start="{start_num}">')
         
@@ -147,6 +148,7 @@ def generate_convened_sessions(entries):
     html = []
     
     if sessions:
+        html.append('\t\t\t\t\t\t<h3>Convened Sessions</h3>')
         html.append('\t\t\t\t\t\t<ul>')
         
         for entry in sessions:
@@ -214,12 +216,12 @@ def format_presentation(entry):
     author = format_authors(entry.get('author', 'Author list'))
     year = entry.get('year', 'Year')
     title = entry.get('title', 'Title')
-    booktitle = entry.get('booktitle', 'Conference Name')
+    conference = entry.get('conference', 'Conference Name')
     address = entry.get('address', 'Location')
     pres_type = entry.get('presentation_type', 'Presentation')
     month = entry.get('month', '')
     
-    citation = f'{author} "{title}" – {booktitle}'
+    citation = f'{author} "{title}" – {conference}'
     if address:
         citation += f', {address}'
     if month:
@@ -236,12 +238,12 @@ def format_invited_presentation(entry):
     author = format_authors(entry.get('author', 'Author list'))
     year = entry.get('year', 'Year')
     title = entry.get('title', 'Title')
-    booktitle = entry.get('booktitle', 'Conference Name')
+    conference = entry.get('conference', 'Conference Name')
     address = entry.get('address', 'Location')
     pres_type = entry.get('presentation_type', 'Presentation')
     month = entry.get('month', '')
 
-    citation = f'{author} "{title}" – {booktitle}'
+    citation = f'{author} "{title}" – {conference}'
     if address:
         citation += f', {address}'
     if month:
@@ -256,12 +258,12 @@ def format_convened_session(entry):
     """Format a convened session"""
     
     title = entry.get('title', 'Session Title')
-    booktitle = entry.get('booktitle', 'Conference Name')
+    conference = entry.get('conference', 'Conference Name')
     address = entry.get('address', 'Location')
     year = entry.get('year', 'Year')
     conveners = entry.get('conveners', '')
     
-    citation = f'<strong>{title}</strong> – {booktitle}, {address}, {year}'
+    citation = f'<strong>{title}</strong> – {conference}, {address}, {year}'
     if conveners:
         conveners_formatted = format_authors(conveners)
         citation += f'<ul style="margin-top: 0.5em;"><li>Co-Conveners: {conveners_formatted}</li></ul>'
